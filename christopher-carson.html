@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Christopher Carson — Ecommerce & Agency Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:        #1c2130;
+    --paper:      #f4f5f7;
+    --warm-white: #f9fafb;
+    --accent:     #2a8c8c;
+    --accent-dim: #1f6b6b;
+    --accent-pale:#e6f4f4;
+    --mid:        #5e6577;
+    --rule:       #d4d8e0;
+    --dark-bg:    #141820;
+    --dark-mid:   #8a90a0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
+
+  /* ── NAV ── */
+  header {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 2.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  header::after {
+    content: 'CC';
+    font-family: 'Playfair Display', serif;
+    font-size: 28vw;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--rule);
+    position: absolute;
+    right: -2vw;
+    bottom: -4vw;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--mid);
+    font-size: 0.83rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .linkedin-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--mid);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid var(--rule);
+    padding: 0.35rem 0.8rem;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  .linkedin-nav:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-pale); }
+  .linkedin-nav svg { width: 13px; height: 13px; fill: currentColor; }
+
+  /* ── HERO ── */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+    padding: 4rem 0 2rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 2rem;
+    color: var(--ink);
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-headline em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 1.12rem;
+    font-weight: 300;
+    color: var(--mid);
+    max-width: 580px;
+    line-height: 1.82;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-footer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    font-size: 0.83rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--accent-dim); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-block;
+    color: var(--mid);
+    text-decoration: none;
+    font-size: 0.83rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
+
+  .section-rule { width: 100%; height: 1px; background: var(--rule); }
+  section { padding: 6rem 4rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  /* ── CLIENT CAROUSEL ── */
+  .carousel-strip {
+    background: var(--dark-bg);
+    padding: 1.75rem 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel-strip::before,
+  .carousel-strip::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .carousel-strip::before {
+    left: 0;
+    background: linear-gradient(to right, var(--dark-bg), transparent);
+  }
+
+  .carousel-strip::after {
+    right: 0;
+    background: linear-gradient(to left, var(--dark-bg), transparent);
+  }
+
+  .carousel-label {
+    text-align: center;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #3a4155;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  .carousel-track-wrapper { overflow: hidden; }
+
+  .carousel-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: marquee 38s linear infinite;
+  }
+
+  .carousel-track:hover { animation-play-state: paused; }
+
+  .carousel-item {
+    display: flex;
+    align-items: center;
+    padding: 0 2.5rem;
+    border-right: 1px solid #252b38;
+    white-space: nowrap;
+  }
+
+  .carousel-item span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4a5268;
+    transition: color 0.2s;
+  }
+
+  .carousel-track:hover .carousel-item:hover span { color: var(--accent); }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── ABOUT ── */
+  .about-section {
+    background: var(--dark-bg);
+    color: #e8eaf0;
+    padding: 5.5rem 4rem;
+  }
+
+  .about-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-section .section-label { color: var(--accent); }
+
+  .about-aside h2 {
+    font-size: clamp(1.7rem, 2.5vw, 2.2rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-aside h2 em { font-style: italic; color: var(--accent); }
+
+  .about-divider { width: 36px; height: 2px; background: var(--accent); margin-bottom: 1.5rem; }
+
+  .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+
+  .about-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent-dim);
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+  }
+
+  .about-body { font-size: 1.05rem; color: #b0b6c6; line-height: 1.88; }
+  .about-body p { margin-bottom: 1.3rem; }
+  .about-body p:last-child { margin-bottom: 0; }
+
+  /* ── PILLARS ── */
+  .pillars { background: var(--warm-white); }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 3.5rem;
+    border: 1px solid var(--rule);
+  }
+
+  .pillar {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--rule);
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pillar:last-child { border-right: none; }
+
+  .pillar::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .pillar:hover::after { transform: scaleX(1); }
+  .pillar:hover { background: #fff; }
+
+  .pillar-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    transition: color 0.25s;
+  }
+
+  .pillar:hover .pillar-number { color: var(--accent); }
+
+  .pillar h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--ink);
+  }
+
+  .pillar p { font-size: 0.9rem; color: var(--mid); line-height: 1.72; }
+  .pillar ul { list-style: none; margin-top: 1.1rem; }
+
+  .pillar ul li {
+    font-size: 0.84rem;
+    color: var(--mid);
+    padding: 0.32rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .pillar ul li:last-child { border-bottom: none; }
+
+  .pillar ul li::before {
+    content: '—';
+    color: var(--accent);
+    font-size: 0.68rem;
+    flex-shrink: 0;
+    margin-top: 0.38em;
+  }
+
+  /* ── HIGHLIGHTS ── */
+  .highlights { background: var(--paper); }
+
+  .highlights-intro {
+    max-width: 640px;
+    font-size: 1.05rem;
+    color: var(--mid);
+    margin-bottom: 3.5rem;
+    line-height: 1.78;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--rule);
+    margin-bottom: 4rem;
+    background: var(--warm-white);
+  }
+
+  .stat {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid var(--rule);
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .stat:last-child { border-right: none; }
+  .stat:hover { background: var(--accent-pale); }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-number span { color: var(--accent); }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--mid);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+  .timeline-meta { padding-top: 0.15rem; }
+
+  .timeline-company { font-weight: 500; font-size: 0.88rem; color: var(--ink); margin-bottom: 0.2rem; }
+  .timeline-dates { font-size: 0.78rem; color: var(--mid); letter-spacing: 0.04em; }
+
+  .timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.18rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+
+  .timeline-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.72; }
+
+  /* ── SELECTED WORK ── */
+  .work { background: var(--dark-bg); padding: 6rem 4rem; }
+  .work .section-label { color: var(--accent); }
+  .work > h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); color: #fff; max-width: 600px; margin-top: 0.5rem; }
+  .work > .work-intro { color: var(--dark-mid); font-size: 0.95rem; max-width: 580px; line-height: 1.72; margin-top: 0.75rem; }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    margin-top: 3rem;
+    background: #252b38;
+    border: 1px solid #252b38;
+  }
+
+  .work-card {
+    background: #1a2030;
+    padding: 2.2rem 2rem;
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .work-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .work-card:hover::before { transform: scaleX(1); }
+  .work-card:hover { background: #1e2535; }
+
+  .work-card-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .work-card h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.35rem; color: #e8eaf0; }
+  .work-card-meta { font-size: 0.8rem; color: #565e72; margin-bottom: 1rem; font-style: italic; }
+  .work-card p { font-size: 0.88rem; color: #8a90a2; line-height: 1.72; }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+    z-index: 0;
+  }
+
+  .contact > * { position: relative; z-index: 1; }
+
+  .contact h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; margin-bottom: 1rem; color: #fff; }
+  .contact h2 em { font-style: italic; opacity: 0.85; }
+
+  .contact-sub {
+    color: rgba(255,255,255,0.78);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.83rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.8rem 1.75rem;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .contact-links a:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.7); }
+
+  .contact-links a.primary {
+    background: #fff;
+    border-color: #fff;
+    color: var(--accent-dim);
+    font-weight: 500;
+  }
+
+  .contact-links a.primary:hover { background: rgba(255,255,255,0.9); }
+  .contact-links a svg { width: 14px; height: 14px; fill: currentColor; }
+  .contact-location { font-size: 0.78rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark-bg);
+    color: #3a4050;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 960px) {
+    header, section, .about-section, .work, .contact { padding: 3.5rem 2rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .pillar { border-right: none; border-bottom: 1px solid var(--rule); }
+    .pillar:last-child { border-bottom: none; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(3) { border-right: 1px solid var(--rule); }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.4rem; }
+    .work-grid { grid-template-columns: 1fr; }
+    header::after { font-size: 40vw; }
+    .nav-links { display: none; }
+    .nav-right { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<header>
+  <nav>
+    <span class="nav-name">Christopher Carson</span>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#pillars">Expertise</a></li>
+        <li><a href="#highlights">Career</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="https://www.linkedin.com/in/christopher-carson-5b23182/" target="_blank" rel="noopener" class="linkedin-nav">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Portland, OR &nbsp;·&nbsp; Open to new opportunities</p>
+    <h1 class="hero-headline">
+      The account<br>partner who's been<br><em>on both sides</em><br>of the table.
+    </h1>
+    <p class="hero-sub">
+      Two decades managing client relationships at agencies where the work I was promising was also the work I was responsible for delivering. That context shapes how I show up as an account partner, and it's genuinely hard to replicate.
+    </p>
+  </div>
+
+  <div class="hero-footer">
+    <a href="#contact" class="btn-primary">Get in touch</a>
+    <a href="#highlights" class="btn-ghost">See the work</a>
+  </div>
+</header>
+
+<!-- ── CLIENT CAROUSEL ── -->
+<div class="carousel-strip">
+  <p class="carousel-label">Clients served across two decades</p>
+  <div class="carousel-track-wrapper">
+    <div class="carousel-track" id="carousel">
+      <!-- ATF clients -->
+      <div class="carousel-item"><span>L.H. Dottie</span></div>
+      <div class="carousel-item"><span>GloryBee</span></div>
+      <div class="carousel-item"><span>GearUP Sports</span></div>
+      <div class="carousel-item"><span>JUGS Sports</span></div>
+      <div class="carousel-item"><span>Healthcare Supply</span></div>
+      <div class="carousel-item"><span>Darby Dental Supply</span></div>
+      <div class="carousel-item"><span>RecSpecs</span></div>
+      <!-- DMG clients -->
+      <div class="carousel-item"><span>Microsoft</span></div>
+      <div class="carousel-item"><span>Oracle</span></div>
+      <div class="carousel-item"><span>Dell</span></div>
+      <div class="carousel-item"><span>SAP</span></div>
+      <div class="carousel-item"><span>BMC Software</span></div>
+      <div class="carousel-item"><span>Iron Mountain</span></div>
+      <div class="carousel-item"><span>Tektronix</span></div>
+      <div class="carousel-item"><span>Fluke</span></div>
+      <div class="carousel-item"><span>Leica Biosystems</span></div>
+      <div class="carousel-item"><span>Blackbaud</span></div>
+      <div class="carousel-item"><span>Indeed</span></div>
+      <div class="carousel-item"><span>Bazaarvoice</span></div>
+      <div class="carousel-item"><span>Kinnser Software</span></div>
+      <div class="carousel-item"><span>Cambia Health</span></div>
+      <div class="carousel-item"><span>Webtrends</span></div>
+      <div class="carousel-item"><span>X-Rite Pantone</span></div>
+      <div class="carousel-item"><span>Mentor Graphics</span></div>
+      <div class="carousel-item"><span>Healthsparq</span></div>
+      <!-- duplicate set for seamless loop -->
+      <div class="carousel-item"><span>L.H. Dottie</span></div>
+      <div class="carousel-item"><span>GloryBee</span></div>
+      <div class="carousel-item"><span>GearUP Sports</span></div>
+      <div class="carousel-item"><span>JUGS Sports</span></div>
+      <div class="carousel-item"><span>Healthcare Supply</span></div>
+      <div class="carousel-item"><span>Darby Dental Supply</span></div>
+      <div class="carousel-item"><span>RecSpecs</span></div>
+      <div class="carousel-item"><span>Microsoft</span></div>
+      <div class="carousel-item"><span>Oracle</span></div>
+      <div class="carousel-item"><span>Dell</span></div>
+      <div class="carousel-item"><span>SAP</span></div>
+      <div class="carousel-item"><span>BMC Software</span></div>
+      <div class="carousel-item"><span>Iron Mountain</span></div>
+      <div class="carousel-item"><span>Tektronix</span></div>
+      <div class="carousel-item"><span>Fluke</span></div>
+      <div class="carousel-item"><span>Leica Biosystems</span></div>
+      <div class="carousel-item"><span>Blackbaud</span></div>
+      <div class="carousel-item"><span>Indeed</span></div>
+      <div class="carousel-item"><span>Bazaarvoice</span></div>
+      <div class="carousel-item"><span>Kinnser Software</span></div>
+      <div class="carousel-item"><span>Cambia Health</span></div>
+      <div class="carousel-item"><span>Webtrends</span></div>
+      <div class="carousel-item"><span>X-Rite Pantone</span></div>
+      <div class="carousel-item"><span>Mentor Graphics</span></div>
+      <div class="carousel-item"><span>Healthsparq</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-rule"></div>
+
+<!-- ── ABOUT ── -->
+<section class="about-section" id="about">
+  <div class="about-inner">
+    <div class="about-aside">
+      <p class="section-label">Who I am</p>
+      <h2>Two decades.<br><em>Both sides</em> of the equation.</h2>
+      <div class="about-divider"></div>
+      <div class="about-tags">
+        <span class="about-tag">Agency Leadership</span>
+        <span class="about-tag">Account Management</span>
+        <span class="about-tag">Ecommerce</span>
+        <span class="about-tag">GTM</span>
+        <span class="about-tag">Partnerships</span>
+        <span class="about-tag">Delivery</span>
+      </div>
+    </div>
+    <div class="about-body">
+      <p>I've spent two decades at agencies where client relationship management and delivery accountability weren't separate jobs. I did both, often at the same time, which means the way I work with clients is shaped by having personally managed what happens after the handshake. I know which commitments are straightforward to honor and which ones deserve a more honest conversation before they're made.</p>
+      <p>Most of my career has been in ecommerce and digital agency environments, where the work is complex, the clients are invested, and the relationship is everything. I've managed $1M+ named account books as an individual contributor, built a PMO from scratch, scaled a professional services organization to nearly 70 people, and driven three consecutive years of 100%+ revenue growth. Along the way I've run partner programs with BigCommerce, Adobe, and Shopify, developed joint GTM programs, and produced demand generation and event programs that go well beyond ecommerce implementations.</p>
+      <p>I'm a direct communicator, a servant leader, and someone who takes real satisfaction in the moment when a client stops treating you like a vendor. That part never gets old.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- ── PILLARS ── -->
+<section class="pillars" id="pillars">
+  <p class="section-label">What I bring</p>
+  <h2 style="font-size: clamp(1.8rem, 3vw, 2.5rem); max-width: 680px; margin-top: 0.5rem;">Client partnership. Commercial performance. The delivery context to back it all up.</h2>
+
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-number">01</div>
+      <h3>Client Partnership</h3>
+      <p>Two decades building trusted advisor relationships at the executive level. I've run QBRs, platform roadmap sessions, and the kinds of difficult conversations that determine whether a client renews or walks.</p>
+      <ul>
+        <li>$1M+ named account book as individual contributor</li>
+        <li>100%+ YoY revenue growth, 3 consecutive years</li>
+        <li>C-suite advisory and executive sponsorship</li>
+        <li>Account expansion, renewal negotiation, long-term roadmaps</li>
+      </ul>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">02</div>
+      <h3>Commercial Performance</h3>
+      <p>I understand the economics on both sides of the table. P&amp;L accountability, gross margin, and pipeline aren't abstractions. Neither is the work of building demand, managing partner ecosystems, and running programs that actually move the needle.</p>
+      <ul>
+        <li>Full GTM ownership: demand gen, partnerships, CRM</li>
+        <li>Platform partner programs: BigCommerce, Adobe, Shopify</li>
+        <li>Event production and partner co-marketing programs</li>
+        <li>Multi-channel programs: email, direct mail, webinars, events</li>
+      </ul>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">03</div>
+      <h3>Delivery Credibility</h3>
+      <p>When I make a commitment, I understand what it takes to honor it, because I've managed complex implementations firsthand. That context makes me a better account partner, not just a better PM.</p>
+      <ul>
+        <li>Agency PMO built from scratch, still in use today</li>
+        <li>Engagements up to $2M, teams up to 30</li>
+        <li>BigCommerce, Adobe Commerce, Shopify expertise</li>
+        <li>Complex integrations: ERP, OMS, WMS, CRM, PIM</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- ── HIGHLIGHTS ── -->
+<section class="highlights" id="highlights">
+  <p class="section-label">Career highlights</p>
+  <p class="highlights-intro">Two decades across agency, SaaS, and consulting environments, spanning ecommerce implementations, B2B demand generation, partner marketing, and live event programs. I build trust, teams, and revenue. Usually all three at once.</p>
+
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-number">20<span>+</span></div>
+      <div class="stat-label">Years agency experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">3<span>x</span></div>
+      <div class="stat-label">Consecutive years 100%+ YoY growth</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">~70</div>
+      <div class="stat-label">Person org at peak</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">$2<span>M</span></div>
+      <div class="stat-label">Largest single engagement</div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <div class="timeline-company">Above The Fray Design</div>
+        <div class="timeline-dates">Feb 2024 – Present</div>
+      </div>
+      <div>
+        <div class="timeline-title">EVP, Professional Services</div>
+        <p class="timeline-desc">Full GTM ownership across customer success, sales, and partnerships. Member of the Executive Operations Committee. Senior relationship owner and executive escalation point for the agency's highest-priority accounts. Partner relationship lead across BigCommerce, Adobe, and Shopify ecosystems.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <div class="timeline-company">Above The Fray Design</div>
+        <div class="timeline-dates">Mar 2021 – Feb 2024</div>
+      </div>
+      <div>
+        <div class="timeline-title">Vice President, Client Services</div>
+        <p class="timeline-desc">Drove 100%+ YoY revenue growth three years running. Built the agency PMO from scratch. Managed a $1M+ named account book as individual contributor alongside leadership responsibilities. Hired and developed PM and BA teams. Scaled the professional services organization to nearly 70 people at peak.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <div class="timeline-company">Above The Fray Design</div>
+        <div class="timeline-dates">Sep 2020 – Present</div>
+      </div>
+      <div>
+        <div class="timeline-title">Sr. Ecommerce Project Manager (concurrent)</div>
+        <p class="timeline-desc">Hands-on PM for named accounts throughout all leadership roles. Engagements up to $2M with cross-functional teams of up to 10. Platform migrations, headless and composable builds, B2B portal implementations, and enterprise integrations across ERP, CRM, OMS, PIM, and DAM systems.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <div class="timeline-company">Pop Art, Inc.</div>
+        <div class="timeline-dates">Jun 2019 – Jul 2020</div>
+      </div>
+      <div>
+        <div class="timeline-title">Director, Sales Development &amp; Demand Generation</div>
+        <p class="timeline-desc">Built demand generation and SDR functions from scratch at a B2B SaaS startup. Salesforce CRM governance, ActiveCampaign automation, MQL/SQL frameworks. All company roles impacted by the COVID-19 pandemic, resulting in RIF.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-meta">
+        <div class="timeline-company">Dunthorpe Marketing Group</div>
+        <div class="timeline-dates">Mar 2005 – Jun 2019</div>
+      </div>
+      <div>
+        <div class="timeline-title">Sr. Director to Account Director to BDR</div>
+        <p class="timeline-desc">14 years growing from BDR to executive team member at a full-service B2B marketing agency. Executive sponsor for roughly half the agency's accounts, representing the majority of billable revenue. Ran integrated demand generation, ABM, event, webinar, and partner marketing programs for enterprise clients across manufacturing, healthcare, and B2B SaaS. Clients included Microsoft, Oracle, Dell, SAP, BMC Software, Tektronix, Fluke, Iron Mountain, Leica Biosystems, Blackbaud, Kinnser Software, Indeed, and Bazaarvoice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- ── SELECTED WORK ── -->
+<section class="work" id="work">
+  <p class="section-label">Selected work</p>
+  <h2>A few projects worth knowing about.</h2>
+  <p class="work-intro">These reflect the range of what I've helped clients accomplish, from complex B2B rescues to wholesale redesigns, custom configurators, and integrated demand generation programs.</p>
+
+  <div class="work-grid">
+    <div class="work-card">
+      <div class="work-card-tag">B2B Ecommerce &nbsp;·&nbsp; Adobe Commerce &nbsp;·&nbsp; Industrial</div>
+      <h3>L.H. Dottie</h3>
+      <div class="work-card-meta">Construction products supplier, 60+ year family business</div>
+      <p>A project rescue that became a full platform overhaul. After a code audit surfaced critical gaps in a build already in progress with a prior agency, we took over mid-stream. We rebuilt the Oracle ERP integration from scratch to handle millions of customer-specific pricing records, added a sales rep portal, SSO integration, and rapid bulk ordering tools, and delivered a scalable B2B experience that gave the client confidence in their platform for the first time.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-card-tag">B2B &amp; B2C Ecommerce &nbsp;·&nbsp; Adobe Commerce &nbsp;·&nbsp; Food &amp; Beverage</div>
+      <h3>GloryBee</h3>
+      <div class="work-card-meta">One of the world's largest raw honey suppliers</div>
+      <p>GloryBee came in wanting several separate microsites for their different customer groups. After discovery and analysis, we recommended the opposite: consolidate rather than expand. The redesign unified wholesale and retail under a single architecture, preserved organic search authority, significantly reduced inbound customer service volume, and drove meaningful growth in wholesale average order value by building an experience wholesale buyers would actually use.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-card-tag">Custom Ecommerce &nbsp;·&nbsp; Adobe Commerce &nbsp;·&nbsp; Sporting Goods</div>
+      <h3>GearUP Sports</h3>
+      <div class="work-card-meta">Sports league uniform company, custom team store platform</div>
+      <p>A full systems architecture overhaul for a company at a critical growth inflection point. We migrated from a heavily customized legacy platform to Adobe Commerce Cloud, built a headless React-based product configurator for real-time uniform customization, integrated Microsoft Dynamics ERP, and automated the processes that had been bottlenecking the team. Proofing time dropped from days to minutes.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-card-tag">Ecommerce &nbsp;·&nbsp; Shopify &nbsp;·&nbsp; Sporting Goods</div>
+      <h3>JUGS Sports</h3>
+      <div class="work-card-meta">Leading sports training equipment manufacturer</div>
+      <p>Platform migration and ecommerce buildout for a well-known sporting goods brand. The engagement balanced a complex product catalog with both B2B dealer requirements and a direct consumer experience, delivered within a defined scope and timeline.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-card-tag">B2B Ecommerce &nbsp;·&nbsp; Full Build &nbsp;·&nbsp; Healthcare</div>
+      <h3>Healthcare Supply</h3>
+      <div class="work-card-meta">Medical and healthcare supply distributor</div>
+      <p>A ground-up build for a client with no digital infrastructure in place. Every element was built from scratch: branding, UX design, platform selection, development, and digital marketing strategy. The platform required advanced registration workflows for professionally licensed B2B buyers and seamless integration with existing accounting systems.</p>
+    </div>
+    <div class="work-card">
+      <div class="work-card-tag">Demand Generation &nbsp;·&nbsp; Events &nbsp;·&nbsp; Enterprise B2B</div>
+      <h3>Enterprise B2B Marketing Programs</h3>
+      <div class="work-card-meta">14 years at Dunthorpe Marketing Group</div>
+      <p>Ran integrated programs across email, direct mail, outbound calling, webinars, and live events for enterprise clients including Microsoft, Oracle, Dell, SAP, BMC Software, Tektronix, Iron Mountain, Leica Biosystems, and Blackbaud. Managed partner event sponsorships, trade show participation, and co-marketing programs. Executive sponsor for accounts representing roughly 70% of agency revenue in my final years at the firm.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-rule"></div>
+
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <h2>Ready to have a <em>real</em> conversation.</h2>
+  <p class="contact-sub">Thoughtful about what I pursue, and prepared when I show up. If the timing is right, reach out.</p>
+  <div class="contact-links">
+    <a href="mailto:clo.carson@gmail.com" class="primary">clo.carson@gmail.com</a>
+    <a href="tel:5037295315">(503) 729-5315</a>
+    <a href="https://www.linkedin.com/in/christopher-carson-5b23182/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="Christopher_Carson_Resume.pdf" download>Download Resume</a>
+  </div>
+  <p class="contact-location">Portland, OR</p>
+</section>
+
+<footer>Christopher Carson &nbsp;&middot;&nbsp; Portland, OR &nbsp;&middot;&nbsp; clo.carson@gmail.com</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.timeline-item').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.07}s`;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
